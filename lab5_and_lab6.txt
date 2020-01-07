@@ -1,0 +1,53 @@
+type President struct {
+    Num int64
+    LName string
+    FName string
+    MInitial string
+    State string
+    Party string
+    Start int64
+    End int64
+    Term string
+}
+
+WW2Presidents := []President{}
+WW2Presidents = append(WW2Presidents, President{Num: 34, LName: "Eisenhower", FName: "Dwight", MInitial: " D. ", State: "Kansas", Party: "Republican", Start: 1953, End: 1961, Term: "42 & 43"})
+WW2Presidents = append(WW2Presidents, President{Num: 35, LName: "Kennedy", FName: "John", MInitial: " F. ", State: "Massachusetts", Party: "Democrat", Start: 1961, End: 1963, Term: "44"})
+WW2Presidents = append(WW2Presidents, President{Num: 36, LName: "Johnson", FName: "Lyndon", MInitial: " B. ", State: "Texas", Party: "Democrat", Start: 1963, End: 1969, Term: "44 & 45"})
+WW2Presidents = append(WW2Presidents, President{Num: 37, LName: "Nixon", FName: "Richard", MInitial: " M. ", State: "California", Party: "Republican", Start: 1969, End: 1974, Term: "46 & 47"})
+WW2Presidents = append(WW2Presidents, President{Num: 38, LName: "Ford", FName: "Gerald", MInitial: " ", State: "Michigan", Party: "Republican", Start: 1974, End: 1977, Term: "47"})
+WW2Presidents = append(WW2Presidents, President{Num: 39, LName: "Carter", FName: "Jimmy", MInitial: " ", State: "Georgia", Party: "Democrat", Start: 1977, End: 1981, Term: "48"})
+WW2Presidents = append(WW2Presidents, President{Num: 40, LName: "Reagan", FName: "Ronald", MInitial: " ", State: "California", Party: "Republican", Start: 1981, End: 1989, Term: "49 & 50"})
+WW2Presidents = append(WW2Presidents, President{Num: 41, LName: "Bush", FName: "George", MInitial: " H. ", State: "Texas", Party: "Republican", Start: 1989, End: 1993, Term: "51"})
+WW2Presidents = append(WW2Presidents, President{Num: 42, LName: "Clinton", FName: "Bill", MInitial: " ", State: "Arkansas", Party: "Democrat", Start: 1993, End: 2001, Term: "52 & 53"})
+WW2Presidents = append(WW2Presidents, President{Num: 43, LName: "Bush", FName: "George", MInitial: " W. ", State: "Texas", Party: "Republican", Start: 2001, End: 2009, Term: "54 & 55"})
+---Adding Barrack and Trump---
+WW2Presidents = append(WW2Presidents, President{Num: 44, LName: "Obama", FName: "Barack", MInitial: " H. ", State: "Illionie", Party: "Democrat", Start: 2009, End: 2017, Term: "56 & 57"})
+WW2Presidents = append(WW2Presidents, President{Num: 45, LName: "Trump", FName: "Donald", MInitial: " J. ", State: "New York", Party: "Republican", Start: 2017, End: 2021, Term: "58"})
+
+--Arrays php for presidents--
+$presidents = ["thirtyfour", "thirtyfive", "thirtysix", "thirtyseven", "thirtyeight", "thirtynine", "forty", "fortyone","fortytwo", "fortythree", "fortyfour", "fortyfive"];
+
+$thirtyfour = ["lname" => "Eisenhower", "fname" => "Dwight", "mInitial" => " D. ", "state" => "Kansas", "party" => "Republican", "start" => 1953, "end" => 1961, "term" => "42 & 43"];
+
+$thirtyfive = ["lname" => "Kennedy", "fname" => "John", "mInitial" => " F. ", "state" => "Massachusetts", "party" => "Democrat", "start" => 1961, "end" => 1963, "term" => "44"];
+
+$thirtysix = ["lname" => "Johnson", "fname" => "Lyndon", "mInitial" => " B. ", "state" => "Texas", "party" => "Democrat", "start" => 1963, "end" => 1969, "term" => "44 & 45"];
+
+$thirtyseven = ["lname" => "Nixon", "fname" => "Richard", "mInitial" => " M. ", "state" => "California", "party" => "Republican", "start" => 1969, "end" => 1974, "term" => "46"];
+
+$thirtyeight = ["lname" => "Ford", "fname" => "Gerald", "mInitial" => " ", "state" => "Michigan", "party" => "Republican", "start" => 1974, "end" => 1977, "term" => "47"];
+
+$thirtynine = ["lname" => "Carter", "fname" => "Jimmy", "mInitial" => " ", "state" => "Georgia", "party" => "Democrat", "start" => 1977, "end" => 1981, "term" => "48"];
+
+$forty = ["lname" => "Reagan", "fname" => "Ronald", "mInitial" => " ", "state" => "California", "party" => "Republican", "start" => 1981, "end" => 1989, "term" => "49 & 50"];
+
+$fortyone = ["lname" => "Bush", "fname" => "George", "mInitial" => " H. ", "state" => "Texas", "party" => "Republican", "start" => 1989, "end" => 1993, "term" => "51"];
+
+$fortytwo = ["lname" => "Clinton", "fname" => "Bill", "mInitial" => " ", "state" => "Arkansas", "party" => "Democrat", "start" => 1993, "end" => 2001, "term" => "52 & 53"];
+
+$fortythree = ["lname" => "Bush", "fname" => "George", "mInitial" => " W. ", "state" => "Texas", "party" => "Republican", "start" => 2001, "end" => 2009, "term" => "54 & 55"];
+
+$fortyfour = ["lname" => "Obama", "fname" => "Barack", "mInitial" => " H. ", "state" => "Hawaii", "party" => "Democrat", "start" => 2009, "end" => 2017, "term" => "56 & 57"];
+
+$fortyfive = ["lname" => "Trump", "fname" => "Donald", "mInitial" => " J. ", "state" => "New York", "party" => "Republican", "start" => 2017, "end" => 2021, "term" => "58"];

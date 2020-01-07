@@ -1,0 +1,49 @@
+MariaDB [sshrest4]> SELECT GAmeid, Name, Email, Address FROM accounts NATURAL JOIN userprofile WHERE userprofile.GamesPlayed<2;
++--------+----------------+------------------------+------------------------+
+| GAmeid | Name           | Email                  | Address                |
++--------+----------------+------------------------+------------------------+
+|     15 | Amber Stone    | astone@gmail.com       | 1802 Nightswatch Tower |
+|     13 | James Edwards  | edwardsjames@yahoo.com | 113 Cook Drive         |
+|      4 | John Legend    | jlegend@yahoo.com      | 101 Stall Road         |
+|      2 | Bimarsh Sharma | bsharma101@gmail.com   | 115 Berkly Rd, Berkly  |
+|     16 | Test Hundred   | tes@100.com            | 1154 Comfort Ave W 190 |
++--------+----------------+------------------------+------------------------+
+5 rows in set (0.00 sec)
+
+MariaDB [sshrest4]> SELECT Ccountry, COUNT(COUNTRY) FROM userprofile GROUP BY Country;
+ERROR 1054 (42S22): Unknown column 'Ccountry' in 'field list'
+MariaDB [sshrest4]> SELECT Country, COUNT(Country) FROM userprofile GROUP BY Country;
++----------------+----------------+
+| Country        | COUNT(Country) |
++----------------+----------------+
+| America        |              4 |
+| Brazil         |              1 |
+| China          |              1 |
+| India          |              3 |
+| Japan          |              1 |
+| Nepal          |              4 |
+| Turkey         |              1 |
+| United Kingdom |              2 |
++----------------+----------------+
+8 rows in set (0.00 sec)
+
+MariaDB [sshrest4]> SELECT * FROM userprofile WHERE userprofile.Gameid=(SELECT Gameid FROM accounts WHERE accounts.Username='test');
++--------+----------------+----------+------+---------------------------------+----------------+-------------+----------+-----------+
+| Gameid | Email          | Name     | Age  | Address                         | Country        | GamesPlayed | GamesWon | GamesLost |
++--------+----------------+----------+------+---------------------------------+----------------+-------------+----------+-----------+
+|     17 | test@gmail.com | Test One |   20 | 1802 Fake Ave W, 151, Oxford MS | United Kingdom |           6 |        0 |         0 |
++--------+----------------+----------+------+---------------------------------+----------------+-------------+----------+-----------+
+1 row in set (0.00 sec)
+
+MariaDB [sshrest4]> SELECT GAme_Type, GROUP_CONCAT(PRize_Id) FROM Game_Record GROUP BY Game_Type;
++-----------+------------------------+
+| GAme_Type | GROUP_CONCAT(PRize_Id) |
++-----------+------------------------+
+| Duo       | 6,2,3                  |
+| Solo      | 4,2,1,3,7              |
+| Squad     | 4,1                    |
++-----------+------------------------+
+3 rows in set (0.00 sec)
+
+MariaDB [sshrest4]> Ctrl-C -- exit!
+Aborted

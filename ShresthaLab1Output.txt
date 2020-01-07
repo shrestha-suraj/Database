@@ -1,0 +1,343 @@
+Script started on Thu 31 Jan 2019 01:23:36 AM CST
+]0;sshrest4@turing:~[?1034h[sshrest4@turing ~]$ show tables;
+bash: show: command not found
+]0;sshrest4@turing:~[sshrest4@turing ~]$ mysql -p sshrest4
+Enter password: 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 1324
+Server version: 5.5.60-MariaDB MariaDB Server
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [sshrest4]> show tables;
++--------------------+
+| Tables_in_sshrest4 |
++--------------------+
+| Courses            |
+| Enrollment         |
+| Students           |
++--------------------+
+(B[0;1m3 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> describe Students;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| StudentID     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| StudentName   | varchar(40) | YES  |     | NULL    |                |
+| Birthdate     | date        | YES  |     | NULL    |                |
+| Status        | varchar(7)  | YES  |     | NULL    |                |
+| HighSchoolGPA | double      | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+(B[0;1m5 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> select * from Students;
++-----------+------------------+------------+--------+---------------+
+| StudentID | StudentName      | Birthdate  | Status | HighSchoolGPA |
++-----------+------------------+------------+--------+---------------+
+|         1 | Hood, Lisa       | 1983-03-31 | JR     |          2.86 |
+|         2 | Reed, Veronica   | 1984-07-16 | FR     |          3.25 |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |
+|         4 | Kirby, Marvin    | 1982-08-12 | JR     |          3.18 |
++-----------+------------------+------------+--------+---------------+
+(B[0;1m4 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> select f[K* from Students where stat[K[K[K[KStatus="[C"J"R"[C
+    -> select * from Students where Status="JR";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select * from Students where Status="JR"' at line 2
+(B[0;7m(B[mMariaDB [sshrest4]> select * from Students where Status="JR" select * from Studen
+nts where Status="JR";[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K";
++-----------+---------------+------------+--------+---------------+
+| StudentID | StudentName   | Birthdate  | Status | HighSchoolGPA |
++-----------+---------------+------------+--------+---------------+
+|         1 | Hood, Lisa    | 1983-03-31 | JR     |          2.86 |
+|         4 | Kirby, Marvin | 1982-08-12 | JR     |          3.18 |
++-----------+---------------+------------+--------+---------------+
+(B[0;1m2 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> sle[K[Kelect * from Students where HighSchoolGPA>3.0;
++-----------+------------------+------------+--------+---------------+
+| StudentID | StudentName      | Birthdate  | Status | HighSchoolGPA |
++-----------+------------------+------------+--------+---------------+
+|         2 | Reed, Veronica   | 1984-07-16 | FR     |          3.25 |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |
+|         4 | Kirby, Marvin    | 1982-08-12 | JR     |          3.18 |
++-----------+------------------+------------+--------+---------------+
+(B[0;1m3 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> select * from Students,E[K Enrollment where Students.StudentID= 
+3;
++-----------+------------------+------------+--------+---------------+-----------+------------+-------+
+| StudentID | StudentName      | Birthdate  | Status | HighSchoolGPA | StudentID | CourseCode | Grade |
++-----------+------------------+------------+--------+---------------+-----------+------------+-------+
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         1 | CSCI211    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         1 | LIBA102    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         1 | MATH261    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         1 | MATH262    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         2 | CSCI111    |       |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         2 | ENGL101    |       |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         2 | MATH261    |       |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | CSCI111    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | CSCI112    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | CSCI211    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | ENGL101    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | LIBA102    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | MATH261    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | MATH262    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | MATH263    |       |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | CSCI111    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | CSCI112    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | CSCI211    |       |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | LIBA102    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | MATH261    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | MATH262    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         4 | MATH263    |       |
++-----------+------------------+------------+--------+---------------+-----------+------------+-------+
+(B[0;1m22 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> 
+[KMariaDB [sshrest4]> select * from Students, Enrollment [K[K[K[K[K[K[K[K[K[K[K[K[K[Ks natural join Enrollment where Studets.Student[Cnts.Student[C[C[C[C[C[C[C[C[C[CId=3;
++-----------+------------------+------------+--------+---------------+------------+-------+
+| StudentID | StudentName      | Birthdate  | Status | HighSchoolGPA | CourseCode | Grade |
++-----------+------------------+------------+--------+---------------+------------+-------+
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | CSCI111    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | CSCI112    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | CSCI211    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | ENGL101    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | LIBA102    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | MATH261    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | MATH262    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 | MATH263    |       |
++-----------+------------------+------------+--------+---------------+------------+-------+
+(B[0;1m8 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> select * from Students, Enrollment where Students.Sti[KudentID=Enrollment.Enrol[K[K[K[K[K[K.StudentId and[K[K[K[K[KD and Students.StudentID=3;
++-----------+------------------+------------+--------+---------------+-----------+------------+-------+
+| StudentID | StudentName      | Birthdate  | Status | HighSchoolGPA | StudentID | CourseCode | Grade |
++-----------+------------------+------------+--------+---------------+-----------+------------+-------+
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | CSCI111    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | CSCI112    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | CSCI211    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | ENGL101    | B     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | LIBA102    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | MATH261    | A     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | MATH262    | C     |
+|         3 | Williams, George | 1980-03-31 | SR     |           3.5 |         3 | MATH263    |       |
++-----------+------------------+------------+--------+---------------+-----------+------------+-------+
+(B[0;1m8 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> select Students.StidentID, Course [KCode, Grade from Students natural join Enrollment order by CourseCode;
+ERROR 1054 (42S22): Unknown column 'Students.StidentID' in 'field list'
+(B[0;7m(B[mMariaDB [sshrest4]> select Students.StidentID, CourseCode, Grade from Students natural join Enrollment order by CourseCode;[C[C[1@u[C[C[C[C[C[C[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++-----------+------------+-------+
+| StudentID | CourseCode | Grade |
++-----------+------------+-------+
+|         4 | CSCI111    | C     |
+|         2 | CSCI111    |       |
+|         3 | CSCI111    | A     |
+|         4 | CSCI112    | B     |
+|         3 | CSCI112    | B     |
+|         1 | CSCI211    | C     |
+|         4 | CSCI211    |       |
+|         3 | CSCI211    | B     |
+|         2 | ENGL101    |       |
+|         3 | ENGL101    | B     |
+|         3 | LIBA102    | A     |
+|         1 | LIBA102    | A     |
+|         4 | LIBA102    | A     |
+|         3 | MATH261    | A     |
+|         1 | MATH261    | C     |
+|         4 | MATH261    | C     |
+|         2 | MATH261    |       |
+|         3 | MATH262    | C     |
+|         1 | MATH262    | B     |
+|         4 | MATH262    | B     |
+|         3 | MATH263    |       |
+|         4 | MATH263    |       |
++-----------+------------+-------+
+(B[0;1m22 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> sel[Klect s[KStudentName, Course [KCde[K[Kode, Title, Credits, Grade from Students natural join Enrollment natural join courses p[Korder by StudentName =[K[K, CourseCode;
+ERROR 1146 (42S02): Table 'sshrest4.courses' doesn't exist
+(B[0;7m(B[mMariaDB [sshrest4]> select StudentName, CourseCode, Title, Credits, Grade from Students natural join Enrollment natural join courses order by StudentName, CourseCode;[1P[1@C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++------------------+------------+------------------------+---------+-------+
+| StudentName      | CourseCode | Title                  | Credits | Grade |
++------------------+------------+------------------------+---------+-------+
+| Hood, Lisa       | CSCI211    | Computer Science III   |       3 | C     |
+| Hood, Lisa       | LIBA102    | Freshman Seminar       |       3 | A     |
+| Hood, Lisa       | MATH261    | Calculus I             |       3 | C     |
+| Hood, Lisa       | MATH262    | Calculus II            |       3 | B     |
+| Kirby, Marvin    | CSCI111    | Computer Science I     |       3 | C     |
+| Kirby, Marvin    | CSCI112    | Computer Science II    |       3 | B     |
+| Kirby, Marvin    | CSCI211    | Computer Science III   |       3 |       |
+| Kirby, Marvin    | LIBA102    | Freshman Seminar       |       3 | A     |
+| Kirby, Marvin    | MATH261    | Calculus I             |       3 | C     |
+| Kirby, Marvin    | MATH262    | Calculus II            |       3 | B     |
+| Kirby, Marvin    | MATH263    | Calculus III           |       3 |       |
+| Reed, Veronica   | CSCI111    | Computer Science I     |       3 |       |
+| Reed, Veronica   | ENGL101    | Freshman Composition I |       3 |       |
+| Reed, Veronica   | MATH261    | Calculus I             |       3 |       |
+| Williams, George | CSCI111    | Computer Science I     |       3 | A     |
+| Williams, George | CSCI112    | Computer Science II    |       3 | B     |
+| Williams, George | CSCI211    | Computer Science III   |       3 | B     |
+| Williams, George | ENGL101    | Freshman Composition I |       3 | B     |
+| Williams, George | LIBA102    | Freshman Seminar       |       3 | A     |
+| Williams, George | MATH261    | Calculus I             |       3 | A     |
+| Williams, George | MATH262    | Calculus II            |       3 | C     |
+| Williams, George | MATH263    | Calculus III           |       3 |       |
++------------------+------------+------------------------+---------+-------+
+(B[0;1m22 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> (B[0;1mBye
+(B[m]0;sshrest4@turing:~[sshrest4@turing ~]$ exit
+
+Script done on Thu 31 Jan 2019 01:30:30 AM CST
+
+
+Script started on Thu 31 Jan 2019 09:28:02 PM CST
+]0;sshrest4@turing:~[?1034h[sshrest4@turing ~]$ mysql -m [K[Kp sshrest4
+Enter password: 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 1448
+Server version: 5.5.60-MariaDB MariaDB Server
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [sshrest4]> show tables;
++--------------------+
+| Tables_in_sshrest4 |
++--------------------+
+| Courses            |
+| Emp                |
+| Enrollment         |
+| Students           |
+| dept               |
++--------------------+
+(B[0;1m5 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> describe Emp;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| EID    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| ename  | varchar(50) | YES  |     | NULL    |                |
+| age    | int(11)     | YES  |     | NULL    |                |
+| salary | double      | YES  |     | NULL    |                |
+| deptID | int(11)     | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+(B[0;1m5 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> descrive [K[K[K[K[Kribe dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| deptID | int(11)     | NO   | PRI | NULL    |       |
+| dname  | varchar(50) | YES  |     | NULL    |       |
+| budget | double      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> Select * from Emp;
+[KMariaDB [sshrest4]> Select * from Emp;
++-----+----------------+------+--------+--------+
+| EID | ename          | age  | salary | deptID |
++-----+----------------+------+--------+--------+
+|   1 | Suraj Shrestha |   23 |  90000 |    101 |
+|   2 | Ned Stark      |   31 |  60000 |    105 |
+|   3 | Grand Mayster  |   60 |  50000 |    102 |
+|   4 | John Snow      |   19 |  20000 |    104 |
+|   5 | Samwell Tarly  |   23 |  90000 |    103 |
++-----+----------------+------+--------+--------+
+(B[0;1m5 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> Select * from dept
+    -> Select * from dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Select * from dept' at line 2
+(B[0;7m(B[mMariaDB [sshrest4]> Select * from dept Select * from dept;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kt;
++--------+----------------------------+--------+
+| deptID | dname                      | budget |
++--------+----------------------------+--------+
+|    101 | Gaming and Animation       | 200000 |
+|    102 | UI Design Team             | 100000 |
+|    103 | Java Developers            |  80000 |
+|    104 | Server Programmers         |  90000 |
+|    105 | Psychology Research        |  20000 |
+|    106 | Help and Technical Support |  70000 |
+|    107 | Database Team              | 150000 |
++--------+----------------------------+--------+
+(B[0;1m7 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> insert into dept values (101,'Gaming and Animation',200000.00);[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KSelect * from [K Emp where age>20;
++-----+----------------+------+--------+--------+
+| EID | ename          | age  | salary | deptID |
++-----+----------------+------+--------+--------+
+|   1 | Suraj Shrestha |   23 |  90000 |    101 |
+|   2 | Ned Stark      |   31 |  60000 |    105 |
+|   3 | Grand Mayster  |   60 |  50000 |    102 |
+|   5 | Samwell Tarly  |   23 |  90000 |    103 |
++-----+----------------+------+--------+--------+
+(B[0;1m4 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> se[K[KSelect * from Student[K[K[K[K[K[K[K[K Emp, dept where deptID=1-[K[K103;
+ERROR 1052 (23000): Column 'deptID' in where clause is ambiguous
+(B[0;7m(B[mMariaDB [sshrest4]> Select * from Emp, dept where deptID=103;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CEdeptID=103;mdeptID=103;pdeptID=103;.deptID=103;[C[C[C[C[C[C[C[C[C[C[C
++-----+---------------+------+--------+--------+--------+----------------------------+--------+
+| EID | ename         | age  | salary | deptID | deptID | dname                      | budget |
++-----+---------------+------+--------+--------+--------+----------------------------+--------+
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    101 | Gaming and Animation       | 200000 |
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    102 | UI Design Team             | 100000 |
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    103 | Java Developers            |  80000 |
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    104 | Server Programmers         |  90000 |
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    105 | Psychology Research        |  20000 |
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    106 | Help and Technical Support |  70000 |
+|   5 | Samwell Tarly |   23 |  90000 |    103 |    107 | Database Team              | 150000 |
++-----+---------------+------+--------+--------+--------+----------------------------+--------+
+(B[0;1m7 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> Select * from Emp natural join dept where Emp.del[KptId[KD=103;
++--------+-----+---------------+------+--------+-----------------+--------+
+| deptID | EID | ename         | age  | salary | dname           | budget |
++--------+-----+---------------+------+--------+-----------------+--------+
+|    103 |   5 | Samwell Tarly |   23 |  90000 | Java Developers |  80000 |
++--------+-----+---------------+------+--------+-----------------+--------+
+(B[0;1m1 row in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> Select * from Student[K[K[K[K[K[K[KEmp, dept where Emp.deptID=dept.deptID;
++-----+----------------+------+--------+--------+--------+----------------------+--------+
+| EID | ename          | age  | salary | deptID | deptID | dname                | budget |
++-----+----------------+------+--------+--------+--------+----------------------+--------+
+|   1 | Suraj Shrestha |   23 |  90000 |    101 |    101 | Gaming and Animation | 200000 |
+|   2 | Ned Stark      |   31 |  60000 |    105 |    105 | Psychology Research  |  20000 |
+|   3 | Grand Mayster  |   60 |  50000 |    102 |    102 | UI Design Team       | 100000 |
+|   4 | John Snow      |   19 |  20000 |    104 |    104 | Server Programmers   |  90000 |
+|   5 | Samwell Tarly  |   23 |  90000 |    103 |    103 | Java Developers      |  80000 |
++-----+----------------+------+--------+--------+--------+----------------------+--------+
+(B[0;1m5 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> A[KSelect * from Emp natural join dept where Emp.salary>50000;
++--------+-----+----------------+------+--------+----------------------+--------+
+| deptID | EID | ename          | age  | salary | dname                | budget |
++--------+-----+----------------+------+--------+----------------------+--------+
+|    101 |   1 | Suraj Shrestha |   23 |  90000 | Gaming and Animation | 200000 |
+|    105 |   2 | Ned Stark      |   31 |  60000 | Psychology Research  |  20000 |
+|    103 |   5 | Samwell Tarly  |   23 |  90000 | Java Developers      |  80000 |
++--------+-----+----------------+------+--------+----------------------+--------+
+(B[0;1m3 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sshrest4]> (B[0;1mBye
+(B[m]0;sshrest4@turing:~[sshrest4@turing ~]$ exit
+
+Script done on Thu 31 Jan 2019 09:37:17 PM CST
